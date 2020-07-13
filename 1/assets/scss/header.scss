@@ -1,0 +1,35 @@
+header{
+    background: #2980B9;
+    color: ivory;
+    display: flex;
+    justify-content: space-between;
+    .title{
+        margin: 0;
+        margin-left: 15px;
+        font-family: sans-serif;
+        font-size: 2em;
+        font-weight: 800;
+    }
+    .header-actions{
+        margin : 0;
+        padding: 0;
+        margin-right: 15px;
+        list-style: none;
+        display: flex;
+        li{
+            margin-left: 5px;
+            display: flex;
+            align-items: center;
+            a{
+                text-decoration: none;
+                font-family: sans-serif;
+                font-weight: 700;
+            }
+            a:visited{
+                color: white;
+            }
+            
+        }
+    
+    }
+}
