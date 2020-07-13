@@ -41,7 +41,7 @@ module.exports.create = function (req, res) {
             return;
         }
 
-        if (!user) {//user does not exist //creating a new user
+        if (!user) {//user does not exist ,creating a new user
             User.create(req.body, function (err, user) {
                 if (err) {
                     console.log("error in creating user while signing up");
