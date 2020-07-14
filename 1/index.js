@@ -25,8 +25,9 @@ app.use(
         prefix: "/css",
     })
 );
-
-app.use(express.urlencoded());
+//middleware that parses data to body object inside req obj
+//extended is false for type of parsing
+app.use(express.urlencoded({extended:false}));
 
 app.use(cookieParser());
 
