@@ -18,9 +18,11 @@ module.exports.addComment = function (req, res) {
                     console.log(`Error while creating comment:${err}`);
                     return;
                 }
-                console.log(comment);
                 
+                //automatically fetch the id of comment
+                //and push it to comments array
                 post.comments.push(comment);
+
                 //after change in the db, we have to call this
                 post.save();
                 return res.redirect('/');
