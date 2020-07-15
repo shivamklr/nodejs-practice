@@ -1,0 +1,32 @@
+<li>
+
+    <!-- delete post button -->
+    <!-- condition 1 if the user is logged in -->
+    <!-- condition 2 if the user logged in is the same as the author of post -->
+    <% if(locals.user && locals.user.id === post.user.id) {%>
+    <small><a href="/posts/destroy/<%= post.id %>">X</a></small>
+    <%}%>
+    <!-- post text -->
+    <%= post.content %>
+    <br>
+    <!-- author of post -->
+    <small><%= post.user.name %> </small>
+
+    <!-- comment section for the post -->
+    <div class="post-comments">
+        <%if(locals.user){%>
+            <form action="/comments/create" method="post">
+                <input name='content' type="text" placeholder="Type comment here" required/>
+                <input type="hidden" name="post" value='<%= post._id %>'/>
+                <input type="submit" value="Add comment">
+            </form>
+        <% } %>
+        <div class="post-comments-list">
+            <ul id="post-comments-<%= post.id %>">
+                <% for(comment of post.comments) {%>
+                    <%- include('_comment') -%>
+                <% } %>    
+            </ul>
+        </div>
+    </div>
+</li>
