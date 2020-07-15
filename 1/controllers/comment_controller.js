@@ -18,7 +18,7 @@ module.exports.addComment = function (req, res) {
                     console.log(`Error while creating comment:${err}`);
                     return;
                 }
-                
+
                 //automatically fetch the id of comment
                 //and push it to comments array
                 post.comments.push(comment);
@@ -30,3 +30,25 @@ module.exports.addComment = function (req, res) {
         }
     })
 };
+module.exports.destroy = function(req, res){
+    Comment.findById(req.params.id, function(err, comment){
+
+        if(comment.user == req.user.id){
+            
+            let postId = comment.post;
+            comment.remove();
+            Post.findByIdAndUpdate(postId, {$pull: {comments: req.params.id}}, function(err, post){
+                if(err){
+                    console.log(`${err}`);
+                    return;
+                }
+                console.log(`Removed comment from post.comments`);
+                return res.redirect('back');
+            });
+            
+        }
+        else{
+            return res.redirect('back');
+        }
+    });
+}
