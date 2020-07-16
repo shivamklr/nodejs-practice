@@ -10,6 +10,18 @@ module.exports.profile = function (req, res) {
     });
 };
 
+// update user info
+module.exports.update = function(req, res){
+    if(req.user.id == req.params.id){
+        User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+            return res.redirect('back');
+        });
+    }
+    else{
+        return res.status(401).send('Unauthorized');
+    }
+}
+
 // render the sign up page
 module.exports.signUp = function (req, res) {
     //no need to sign in if the user if already signed in
