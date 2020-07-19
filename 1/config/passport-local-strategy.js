@@ -7,16 +7,19 @@ passport.use(
     new LocalStrategy(
         {
             usernameField: "email",
+            //making req object accessible inside callback
+            // so that flash can be used
+            passReqToCallback:true,
         },
-        function (email, password, done) {// ye dikkat callback mn bhi ayi thi, arguments ka order and name
+        function (req, email, password, done) {// ye dikkat callback mn bhi ayi thi, arguments ka order and name
             
             User.findOne({ email: email }, function (err, user) {
                 if (err) {
-                    console.log(`err`);
+                    req.flash('error', err);
                     return done(err);
                 }
                 if (!user || user.password != password) {
-                    console.log("Invalid Username/Password");
+                    req.flash('error',"Invalid Username/Password");
                     return done(null, false);
                 }
                 return done(null, user);
