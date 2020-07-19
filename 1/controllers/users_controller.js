@@ -72,12 +72,14 @@ module.exports.create = function (req, res) {
     });
 };
 
-//sign out action
+//sign out action or destroy session
 module.exports.signOut = function(req, res){
     req.logout();
-    return res.redirect('/')
+    req.flash('success', 'You are logged out!');
+    return res.redirect('/');
 }
 // sign in and create a session for the user
 module.exports.createSession = function (req, res) {
+    req.flash('success', 'Logged In Successfully');
     return res.redirect("/");
 };
