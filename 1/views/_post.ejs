@@ -1,10 +1,10 @@
-<li>
+<li id='post-<%=post._id %>'>
 
     <!-- delete post button -->
     <!-- condition 1 if the user is logged in -->
     <!-- condition 2 if the user logged in is the same as the author of post -->
     <% if(locals.user && locals.user.id === post.user.id) {%>
-    <small><a href="/posts/destroy/<%= post.id %>">X</a></small>
+    <small><a class ='delete-post-button' href="/posts/destroy/<%= post.id %>">X</a></small>
     <%}%>
     <!-- post text -->
     <%= post.content %>

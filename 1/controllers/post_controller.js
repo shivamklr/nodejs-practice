@@ -12,7 +12,7 @@ module.exports.addPost = async function (req, res) {
                     post:post
                 },
                 message:'Post created!'
-            })
+            });
         }
         req.flash('success','Post Published !');
         return res.redirect("back");
